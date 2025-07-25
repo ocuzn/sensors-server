@@ -54,14 +54,12 @@ mqttClient.on('message', (topic, message) => {
   }
 });
 
-// API: List devices
+
 app.get('/devices', (req, res) => {
   const deviceIds = [...new Set(allData.map(entry => entry.device_id))];
   res.json(deviceIds);
 });
 
-
-// REST endpoint to get data history for a device
 app.get('/history/:deviceId', (req, res) => {
   const deviceId = req.params.deviceId;
   const deviceData = allData.filter(entry => entry.device_id === deviceId);
