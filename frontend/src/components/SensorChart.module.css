@@ -1,0 +1,122 @@
+/* src/components/SensorChart.module.css */
+.container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.chartInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.dataPoints {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.timePeriod {
+  font-size: 12px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.chartContainer {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+
+.chartFooter {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+  padding: 4px 8px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.loadingContainer,
+.errorContainer,
+.noDataContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  text-align: center;
+}
+
+.errorContainer {
+  color: #e74c3c;
+}
+
+.noDataContainer {
+  color: #666;
+}
+
+.errorIcon,
+.noDataIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.errorContainer h3,
+.noDataContainer h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.errorContainer p,
+.noDataContainer p {
+  margin: 0;
+  font-size: 14px;
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .chartContainer {
+    height: 300px;
+  }
+  
+  .stats {
+    gap: 12px;
+  }
+  
+  .stat {
+    font-size: 11px;
+  }
+  
+  .chartInfo {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+}

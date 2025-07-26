@@ -1,0 +1,180 @@
+/* src/components/Navigation.module.css */
+.nav {
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.brand {
+  flex-shrink: 0;
+}
+
+.brandLink {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.brandLink:hover {
+  color: #007bff;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
+  justify-content: center;
+}
+
+.navLink {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navLink:hover {
+  color: #007bff;
+  background: rgba(0, 123, 255, 0.1);
+}
+
+.navLink.active {
+  color: #007bff;
+  background: rgba(0, 123, 255, 0.1);
+  font-weight: 600;
+}
+
+.futureLinks {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.comingSoon {
+  font-size: 12px;
+  color: #ccc;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #f8f9fa;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.comingSoon:hover::after {
+  content: 'Coming Soon';
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+.status {
+  flex-shrink: 0;
+}
+
+.statusIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #27ae60;
+  animation: pulse 2s infinite;
+}
+
+.statusText {
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+    height: 56px;
+  }
+  
+  .brandLink {
+    font-size: 18px;
+  }
+  
+  .navLinks {
+    gap: 16px;
+  }
+  
+  .navLink {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+  
+  .futureLinks {
+    display: none;
+  }
+  
+  .statusText {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
+  
+  .brandLink {
+    font-size: 16px;
+  }
+  
+  .navLinks {
+    gap: 8px;
+  }
+  
+  .navLink {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}

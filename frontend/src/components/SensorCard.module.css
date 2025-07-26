@@ -1,0 +1,171 @@
+/* src/components/SensorCard.module.css */
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  border: 2px solid transparent;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  border-color: #007bff;
+}
+
+.card.error {
+  border-color: #e74c3c;
+  cursor: default;
+}
+
+.card.error:hover {
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card.noData {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.card.noData:hover {
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: transparent;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  flex: 1;
+}
+
+.status {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.readings {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.readingIcon {
+  font-size: 20px;
+  width: 32px;
+  text-align: center;
+}
+
+.readingContent {
+  flex: 1;
+}
+
+.readingLabel {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.readingValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  line-height: 1;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+  font-size: 12px;
+  color: #666;
+}
+
+.lastUpdated {
+  flex: 1;
+}
+
+.readingCount {
+  color: #999;
+}
+
+.clickHint {
+  position: absolute;
+  bottom: -30px;
+  right: 20px;
+  font-size: 12px;
+  color: #007bff;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .clickHint {
+  opacity: 1;
+}
+
+.errorMessage,
+.noDataMessage {
+  color: #666;
+  font-style: italic;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.errorMessage {
+  color: #e74c3c;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .card {
+    padding: 16px;
+    min-height: 180px;
+  }
+  
+  .title {
+    font-size: 16px;
+  }
+  
+  .readingValue {
+    font-size: 20px;
+  }
+  
+  .clickHint {
+    display: none;
+  }
+}

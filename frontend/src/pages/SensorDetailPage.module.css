@@ -1,0 +1,358 @@
+/* src/pages/SensorDetailPage.module.css */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: calc(100vh - 64px);
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.breadcrumbLink {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumbLink:hover {
+  color: #0056b3;
+}
+
+.breadcrumbSeparator {
+  color: #666;
+}
+
+.breadcrumbCurrent {
+  color: #333;
+  font-weight: 500;
+}
+
+.deviceInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #eee;
+}
+
+.deviceName {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.deviceMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.deviceStatus {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.lastUpdate {
+  font-size: 12px;
+  color: #666;
+}
+
+.currentReadings {
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 20px 0;
+}
+
+.readingsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.readingCard {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.readingIcon {
+  font-size: 32px;
+  width: 48px;
+  text-align: center;
+}
+
+.readingContent {
+  flex: 1;
+}
+
+.readingLabel {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.readingValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+  line-height: 1;
+}
+
+.chartControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.controlLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+  min-width: 150px;
+}
+
+.periodButtons {
+  display: flex;
+  gap: 4px;
+}
+
+.periodButton {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  background: white;
+  color: #666;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.periodButton:hover {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.periodButton.active {
+  background: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.chartSection {
+  margin-bottom: 32px;
+}
+
+.statistics {
+  margin-bottom: 32px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.statCard {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.statValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: #007bff;
+}
+
+.loadingContainer,
+.errorContainer,
+.noDataContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  text-align: center;
+}
+
+.errorContainer {
+  color: #e74c3c;
+}
+
+.noDataContainer {
+  color: #666;
+}
+
+.errorIcon,
+.noDataIcon {
+  font-size: 64px;
+  margin-bottom: 24px;
+}
+
+.errorContainer h2,
+.noDataContainer h2 {
+  margin: 0 0 12px 0;
+  font-size: 24px;
+}
+
+.errorContainer p,
+.noDataContainer p {
+  margin: 0 0 24px 0;
+  font-size: 16px;
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.backButton:hover {
+  background: #0056b3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .deviceInfo {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  
+  .deviceName {
+    font-size: 24px;
+  }
+  
+  .deviceMeta {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .chartControls {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  
+  .periodButtons {
+    flex-wrap: wrap;
+  }
+  
+  .readingsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+  
+  .readingCard {
+    padding: 16px;
+  }
+  
+  .readingIcon {
+    font-size: 24px;
+    width: 32px;
+  }
+  
+  .readingValue {
+    font-size: 20px;
+  }
+  
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .periodButtons {
+    justify-content: center;
+  }
+  
+  .periodButton {
+    flex: 1;
+    min-width: 0;
+  }
+}
