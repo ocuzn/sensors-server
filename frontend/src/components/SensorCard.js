@@ -13,7 +13,7 @@ import {
 import LoadingSpinner from './LoadingSpinner';
 import styles from './SensorCard.module.css';
 
-const SensorCard = ({ deviceId }) => {
+const SensorCard = ({ deviceId, readingCount }) => {
   const navigate = useNavigate();
   const { sensorData, loading, error, lastUpdated } = useSensorData(deviceId);
 
@@ -131,7 +131,7 @@ const SensorCard = ({ deviceId }) => {
           Updated {formatRelativeTime(latest.timestamp)}
         </span>
         <span className={styles.readingCount}>
-          {sensorData.stats?.total_readings || 0} readings
+          {readingCount ?? 0} readings
         </span>
       </div>
 

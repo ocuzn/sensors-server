@@ -85,7 +85,8 @@ const HomePage = () => {
           {sensors.map((sensor) => (
             <SensorCard 
               key={sensor.device_id} 
-              deviceId={sensor.device_id} 
+              deviceId={sensor.device_id}
+              readingCount={sensor.reading_count}
             />
           ))}
         </div>
