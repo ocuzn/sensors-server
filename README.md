@@ -11,7 +11,7 @@ A full-stack IoT solution for logging, storing, and visualizing sensor data from
 - **React Dashboard:** Real-time, responsive dashboard for monitoring all sensors, viewing details, and exploring historical charts.
 - **Extensible:** Easily add new sensor types and frontend visualizations.
 - **Graceful Shutdown:** Handles process signals and cleans up resources.
-
+- **Weather page** - 7-day forecast with detailed daily breakdown (temperature, precipitation, wind, UV, sunrise/sunset, and more)
 ---
 
 ## Project Structure

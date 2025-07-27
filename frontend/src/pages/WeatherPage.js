@@ -35,45 +35,90 @@ const WeatherPage = () => {
   const renderDayDetails = (i) => (
     <div style={{
       background: '#f6f8fa',
-      borderRadius: 12,
-      padding: '1.5em',
+      borderRadius: 16,
+      padding: '2em',
       marginBottom: '2em',
-      boxShadow: '0 2px 8px #0001'
+      boxShadow: '0 2px 12px #0002'
     }}>
-      <h3 style={{ marginTop: 0 }}>
-        {i === 0 ? "Today" : (safe(daily.time, i, '') && new Date(safe(daily.time, i, '')).toLocaleDateString())}
-        {" "}
-        <span style={{ fontSize: '1.5em' }}>{getWeatherIcon(safe(daily.weathercode, i))}</span>
+      <h3 style={{ marginTop: 0, display: 'flex', alignItems: 'center', gap: 12 }}>
+        <span style={{ fontSize: '2em' }}>{getWeatherIcon(safe(daily.weathercode, i))}</span>
+        <span>
+          {i === 0 ? "Today" : (safe(daily.time, i, '') && new Date(safe(daily.time, i, '')).toLocaleDateString())}
+        </span>
+        <span style={{ color: '#1976d2', fontWeight: 500, marginLeft: 8 }}>
+          {getWeatherSummary(safe(daily.weathercode, i))}
+        </span>
       </h3>
-      <div style={{ fontSize: '1.2em', marginBottom: 8 }}>
-        {getWeatherSummary(safe(daily.weathercode, i))}
-      </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5em' }}>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+        gap: '1.5em',
+        marginTop: '1.5em'
+      }}>
         <div>
-          <strong>Temperature:</strong><br />
+          <strong>🌡️ Temperature</strong><br />
           {safe(daily.temperature_2m_min, i)}°C / {safe(daily.temperature_2m_max, i)}°C
         </div>
         <div>
-          <strong>Apparent Temp:</strong><br />
+          <strong>🤗 Apparent Temp</strong><br />
           {safe(daily.apparent_temperature_min, i)}°C / {safe(daily.apparent_temperature_max, i)}°C
         </div>
         <div>
-          <strong>Precipitation:</strong><br />
+          <strong>🌧️ Precipitation</strong><br />
           {safe(daily.precipitation_sum, i)} mm
         </div>
         <div>
-          <strong>Wind:</strong><br />
-          {safe(daily.windspeed_10m_max, i)} km/h max
+          <strong>🌦️ Rain</strong><br />
+          {safe(daily.rain_sum, i)} mm
         </div>
         <div>
-          <strong>Sunrise/Sunset:</strong><br />
+          <strong>🌦️ Showers</strong><br />
+          {safe(daily.showers_sum, i)} mm
+        </div>
+        <div>
+          <strong>❄️ Snowfall</strong><br />
+          {safe(daily.snowfall_sum, i)} mm
+        </div>
+        <div>
+          <strong>⏱️ Precipitation Hours</strong><br />
+          {safe(daily.precipitation_hours, i)}
+        </div>
+        <div>
+          <strong>💨 Wind Speed Max</strong><br />
+          {safe(daily.windspeed_10m_max, i)} km/h
+        </div>
+        <div>
+          <strong>💨 Wind Gusts Max</strong><br />
+          {safe(daily.windgusts_10m_max, i)} km/h
+        </div>
+        <div>
+          <strong>🧭 Wind Direction</strong><br />
+          {safe(daily.winddirection_10m_dominant, i)}°
+        </div>
+        <div>
+          <strong>🌅 Sunrise / 🌇 Sunset</strong><br />
           {safe(daily.sunrise, i, '').slice(11, 16)} / {safe(daily.sunset, i, '').slice(11, 16)}
         </div>
         <div>
-          <strong>UV Index:</strong><br />
+          <strong>🔆 Shortwave Radiation</strong><br />
+          {safe(daily.shortwave_radiation_sum, i)} MJ/m²
+        </div>
+        <div>
+          <strong>💧 Evapotranspiration</strong><br />
+          {safe(daily.et0_fao_evapotranspiration, i)} mm
+        </div>
+        <div>
+          <strong>🌞 UV Index Max</strong><br />
           {safe(daily.uv_index_max, i)}
         </div>
-        {/* Add more fields as desired */}
+        <div>
+          <strong>🌞 UV Index Clear Sky Max</strong><br />
+          {safe(daily.uv_index_clear_sky_max, i)}
+        </div>
+        <div>
+          <strong>🔢 Weather Code</strong><br />
+          {safe(daily.weathercode, i)}
+        </div>
       </div>
     </div>
   );
