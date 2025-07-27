@@ -1,40 +1,22 @@
-// src/pages/HomePage.js
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { formatRelativeTime } from '../utils/formatters';
-import { useAllSensors } from '../hooks/useSensorData';
-import styles from './HomePage.module.css';
+import { useAllSensors } from '../hooks/useSensorData'; 
+import SensorCard from '../components/SensorCard';
+import styles from './SensorsPage.module.css'; 
+const SensorsPage = () => {
+  const { sensors, loading, error, lastUpdated, refetch } = useAllSensors();
 
-const HomePage = () => {
-  const [location, setLocation] = useState(null);
-  const { sensors, loading, error, lastUpdated } = useAllSensors();
-
-  useEffect(() => {
-    fetch('/api/location')
-      .then(res => res.json())
-      .then(data => setLocation(data));
-  }, []);
+  const handleRefresh = () => {
+    refetch();
+  };
 
   return (
     <div className={styles.container}>
-      {/* Location at the top */}
-      <div style={{ margin: '0.5em 0 1.5em 0', fontSize: '1.1em', color: '#1976d2', textAlign: 'center' }}>
-        {location
-          ? (
-            <>
-              📍 <strong>
-                {location.short_name}
-              </strong>
-            </>
-          )
-          : <>Loading location...</>
-        }
-      </div>
-
       <div className={styles.header}>
         <div className={styles.headerContent}>
-          <h1 className={styles.title}>Smart Home Dashboard</h1>
+          <h1 className={styles.title}>Sensors</h1>
           <p className={styles.subtitle}>
-            Monitor your sensors in real-time
+            Overview of all connected sensor devices
           </p>
         </div>
         <div className={styles.headerActions}>
@@ -43,6 +25,16 @@ const HomePage = () => {
               <span>Last updated {formatRelativeTime(lastUpdated)}</span>
             )}
           </div>
+          <button 
+            className={styles.refreshButton} 
+            onClick={handleRefresh}
+            disabled={loading}
+          >
+            <span className={`${styles.refreshIcon} ${loading ? styles.spinning : ''}`}>
+              🔄
+            </span>
+            Refresh
+          </button>
         </div>
       </div>
 
@@ -53,7 +45,36 @@ const HomePage = () => {
             <div className={styles.errorText}>
               <strong>Error loading sensors:</strong> {error}
             </div>
+            <button className={styles.retryButton} onClick={handleRefresh}>
+              Retry
+            </button>
           </div>
+        </div>
+      )}
+
+      {sensors.length === 0 && !loading && !error ? (
+        <div className={styles.emptyState}>
+          <div className={styles.emptyIcon}>🏠</div>
+          <h2 className={styles.emptyTitle}>No Sensors Found</h2>
+          <p className={styles.emptyDescription}>
+            No sensor devices are currently reporting data. Make sure your ESP8266 devices are connected and sending data to the MQTT broker.
+          </p>
+          <div className={styles.emptyActions}>
+            <button className={styles.refreshButton} onClick={handleRefresh}>
+              <span className={styles.refreshIcon}>🔄</span>
+              Check Again
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.sensorsGrid}>
+          {sensors.map((sensor) => (
+            <SensorCard 
+              key={sensor.device_id} 
+              deviceId={sensor.device_id}
+              readingCount={sensor.reading_count}
+            />
+          ))}
         </div>
       )}
 
@@ -80,14 +101,9 @@ const HomePage = () => {
             <span className={styles.statLabel}>Online Now</span>
           </div>
         </div>
-        <div className={styles.systemInfo}>
-          <p className={styles.systemText}>
-            Smart Home Dashboard v1.0 • Real-time sensor monitoring
-          </p>
-        </div>
       </div>
     </div>
   );
 };
 
-export default HomePage;
+export default SensorsPage;

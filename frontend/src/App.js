@@ -5,6 +5,8 @@ import Navigation from './components/Navigation';
 import HomePage from './pages/HomePage';
 import SensorDetailPage from './pages/SensorDetailPage';
 import WeatherPage from './pages/WeatherPage';
+import SensorsPage from './pages/SensorsPage';
+
 
 import './App.css';
 
@@ -18,6 +20,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/sensor/:deviceId" element={<SensorDetailPage />} />
             <Route path="/weather" element={<WeatherPage />} />
+            <Route path="/sensors" element={<SensorsPage />} />
           </Routes>
         </main>
       </div>

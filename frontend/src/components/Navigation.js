@@ -28,11 +28,16 @@ const Navigation = () => {
           >
             ☀️ Weather
           </Link>
+          <Link
+            to="/sensors"
+            className={`${styles.navLink} ${location.pathname === '/sensors' ? styles.active : ''}`}
+          >
+            🌡️ Sensors
+          </Link>
           
           {/* Add more navigation items as your system grows */}
           <div className={styles.futureLinks}>
             {/* These will be activated as you build more features */}
-            <span className={styles.comingSoon}>🌡️ Sensors</span>
             <span className={styles.comingSoon}>📊 Analytics</span>
             <span className={styles.comingSoon}>⚙️ Settings</span>
           </div>
