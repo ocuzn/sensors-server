@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const config = require('./config/config');
+const fetch = require('node-fetch');
 
 // Import our modules
 const { initializeDatabase, closeDatabase } = require('./config/database');
@@ -71,6 +72,46 @@ app.get('/api/weather', async (req, res) => {
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
+});
+
+
+// Location endpoint using OpenStreetMap Nominatim
+app.get('/api/location', async (req, res) => {
+  const { latitude, longitude } = config;
+  let locationName = '';
+  let shortName = '';
+  let address = {};
+  try {
+    const geoRes = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
+    );
+    const geoData = await geoRes.json();
+    locationName = geoData.display_name || '';
+    address = geoData.address || {};
+
+    // Extract city/town/village/hamlet and country
+    const city =
+      address.city ||
+      address.town ||
+      address.village ||
+      address.hamlet ||
+      address.suburb ||
+      '';
+    const country = address.country || '';
+    shortName = city
+      ? `${city}${country ? ', ' + country : ''}`
+      : country || locationName.split(',').slice(0, 2).join(', ');
+  } catch (e) {
+    locationName = '';
+    shortName = `${latitude}, ${longitude}`;
+  }
+  res.json({
+    latitude,
+    longitude,
+    name: locationName,
+    short_name: shortName,
+    address
+  });
 });
 
 

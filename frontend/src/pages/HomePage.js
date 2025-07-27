@@ -1,5 +1,5 @@
 // src/pages/HomePage.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAllSensors } from '../hooks/useSensorData';
 import SensorCard from '../components/SensorCard';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -7,7 +7,14 @@ import { formatRelativeTime } from '../utils/formatters';
 import styles from './HomePage.module.css';
 
 const HomePage = () => {
+  const [location, setLocation] = useState(null);
   const { sensors, loading, error, lastUpdated, refetch } = useAllSensors();
+
+  useEffect(() => {
+    fetch('/api/location')
+      .then(res => res.json())
+      .then(data => setLocation(data));
+  }, []);
 
   const handleRefresh = () => {
     refetch();
@@ -25,6 +32,20 @@ const HomePage = () => {
 
   return (
     <div className={styles.container}>
+      {/* Location moved to top and shortened */}
+      <div style={{ margin: '0.5em 0 1.5em 0', fontSize: '1.1em', color: '#1976d2', textAlign: 'center' }}>
+        {location
+          ? (
+            <>
+              📍 <strong>
+                {location.short_name}
+              </strong>
+            </>
+          )
+          : <>Loading location...</>
+        }
+      </div>
+
       <div className={styles.header}>
         <div className={styles.headerContent}>
           <h1 className={styles.title}>Smart Home Dashboard</h1>
