@@ -2,10 +2,13 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const config = require('./config/config');
 
 // Import our modules
 const { initializeDatabase, closeDatabase } = require('./config/database');
 const { initializeMQTT, getMQTTStatus, closeMQTT } = require('./services/mqttClient');
+const { getCurrentWeather } = require('./services/openMeteo');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -52,6 +55,24 @@ app.get('/', (req, res) => {
     timestamp: new Date().toISOString()
   });
 });
+
+
+// External endpoint for Open Meteo weather data
+app.get('/api/weather', async (req, res) => {
+  // Use query params if provided, otherwise use config defaults
+  const lat = req.query.lat || config.latitude;
+  const lon = req.query.lon || config.longitude;
+  if (!lat || !lon) {
+    return res.status(400).json({ error: 'lat and lon required' });
+  }
+  try {
+    const weather = await getCurrentWeather(lat, lon);
+    res.json({ success: true, weather });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 
 // API Routes
 app.use('/api/sensors', require('./routes/sensors'));

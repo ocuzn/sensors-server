@@ -22,6 +22,12 @@ const Navigation = () => {
           >
             🏠 Home
           </Link>
+          <Link
+            to="/weather"
+            className={`${styles.navLink} ${location.pathname === '/weather' ? styles.active : ''}`}
+          >
+            ☀️ Weather
+          </Link>
           
           {/* Add more navigation items as your system grows */}
           <div className={styles.futureLinks}>

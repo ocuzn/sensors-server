@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import HomePage from './pages/HomePage';
 import SensorDetailPage from './pages/SensorDetailPage';
+import WeatherPage from './pages/WeatherPage';
+
 import './App.css';
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/sensor/:deviceId" element={<SensorDetailPage />} />
+            <Route path="/weather" element={<WeatherPage />} />
           </Routes>
         </main>
       </div>
